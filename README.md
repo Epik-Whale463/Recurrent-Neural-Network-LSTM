@@ -92,10 +92,12 @@ Secret-Garden-Text-Generator/
 ## Screenshots
 
 ### Input Form:
-![Input Form](screenshots/input-form.png)
+![image](https://github.com/user-attachments/assets/4047d593-070e-400f-acd1-58f32bb93e3e)
+
 
 ### Generated Text Output:
-![Generated Text](screenshots/generated-text.png)
+![image](https://github.com/user-attachments/assets/78f33bac-0afd-43f8-8f41-a2707bf8ff63)
+
 
 ---
 
