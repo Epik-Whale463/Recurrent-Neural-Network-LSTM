@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secret Garden Text Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+
+        p, ol {
+            max-width: 800px;
+            margin: 20px auto;
+            line-height: 1.8;
+            color: #2c3e50;
+        }
+
+        form {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0,123,255,0.2);
+        }
+
+        input[type="submit"] {
+            background: linear-gradient(to right, #007BFF, #0056b3);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1em;
+            transition: transform 0.2s ease;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* New container for side-by-side boxes */
+        .boxes-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+
+        .explanation,
+        .generated-text {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            flex: 1 1 300px;
+            min-width: 300px;
+            margin: 0; /* Removed auto margins to allow flex layout */
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .explanation,
+            .generated-text {
+                flex: 1 1 100%;
+            }
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Secret Garden Text Generator</h1>
+
+    <form method="POST">
+        <label for="seed_text">Seed Text:</label>
+        <input type="text" id="seed_text" name="seed_text" placeholder="Enter starting text"  required>
+
+        <label for="next_words">Number of Words:</label>
+        <input type="number" id="next_words" name="next_words" value="50" min="1"  required>
+
+        <label for="temperature">Temperature (0.1 to 2.0):</label>
+        <input type="number" id="temperature" name="temperature"  step="0.1" min="0.1" max="2.0" required>
+
+        <input type="submit" value="Generate Text">
+    </form>
+
+    <div class="boxes-container">
+        <div class="explanation">
+            <h2>How It Works</h2>
+            <p>
+                This application demonstrates text generation using machine learning techniques, specifically Recurrent Neural Networks (RNNs) with Long Short-Term Memory (LSTM) cells. Here's what happens:
+            </p>
+            <ol>
+                <li>
+                    <b>Training:</b> The model learns from "The Secret Garden," identifying patterns, word sequences, and contextual relationships.
+                </li>
+                <li>
+                    <b>Seed Text:</b> A starting phrase is provided to guide generation.
+                </li>
+                <li>
+                    <b>Text Generation:</b> The model predicts the next word based on the seed text and its learned patterns.
+                </li>
+                <li>
+                    <b>Temperature:</b> Adjusts creativity:
+                    <ul>
+                        <li>Low (0.3): Predictable and coherent.</li>
+                        <li>High (1.5): More random and creative.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        {% if generated_text %}
+        <div class="generated-text">
+            <h2>Generated Text:</h2>
+            <p>{{ generated_text }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
